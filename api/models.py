@@ -3,7 +3,7 @@ import datetime as dt
 
 # Create your models here.
 class  Profile(models.Model):
-    dob = models.DateTimeField(null=True)
+    dob = models.DateField(null=True)
     email = models.EmailField(max_length=256, null=True)
     idNumber = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
