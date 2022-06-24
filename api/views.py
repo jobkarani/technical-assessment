@@ -5,7 +5,7 @@ from api import serializer
 from .serializer import *
 from rest_framework.views import APIView
 
-# # Create your views here.
+# Create your views here.
 # def profile(request):
 #     profile = Profile.objects.all()
 
