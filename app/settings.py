@@ -45,7 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api.apps.AppConfig',
+    'api.apps.ApiConfig',
+    'bootstrap4',
+    'cloudinary',
+    'tinymce',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
