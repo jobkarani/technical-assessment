@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from django.shortcuts import redirect, render
 from .models import *
-
+from .forms import *
 from .serializer import *
 from rest_framework.views import APIView
 
@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 def index(request):
 
     return render(request, "index.html")
-    
+
 def create_profile(request):
     title = "Create Profile"
     if request.method == 'POST':
