@@ -1,9 +1,12 @@
 from django.db import models
-import datetime as dt
+import datetime
+from app import *
 
+
+DATE_INPUT_FORMATS = ['%Y-%d-%m']
 # Create your models here.
 class  Profile(models.Model):
-    dob = models.DateField(null=True)
+    dob = models.DateField(editable=DATE_INPUT_FORMATS,null=True)
     email = models.EmailField(max_length=256, null=True)
     idNumber = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
