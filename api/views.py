@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from django.shortcuts import render
 from .models import *
-from api import serializer
+
 from .serializer import *
 from rest_framework.views import APIView
 
