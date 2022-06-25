@@ -29,7 +29,7 @@ class  Dataset2(models.Model):
     dob = models.DateField(editable=DATE_INPUT_FORMATS,null=True)
     idNumber = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
-    phone = ArrayField(models.CharField(null=True,blank=True),null=True,blank=True)
+    phone = ArrayField(models.CharField(max_length=12,null=True,blank=True),null=True,blank=True)
 
     def save_dataset2(self):
         self.save()

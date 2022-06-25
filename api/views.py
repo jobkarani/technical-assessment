@@ -11,29 +11,48 @@ def index(request):
 
     return render(request, "index.html")
 
-def create_profile(request):
-    title = "Create Profile"
+def create_dataset1(request):
+    title = "Create Dataset1"
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
+        form = Dataset1Form(request.POST, request.FILES)
         if form.is_valid():
-            profile = form.save(commit=False)
-            profile.save()
+            dataset1 = form.save(commit=False)
+            dataset1.save()
         return HttpResponseRedirect('/')
 
     else:
-        form = ProfileForm()
+        form = Dataset1Form()
     return render(request, 'createProfile.html', {"form": form, "title": title})
 
 
 
-def profile(request):
-    profile = Profile.objects.all()
+def dataset1(request):
+    dataset1 = Dataset1.objects.all()
 
-    return render(request, "profile.html", {"profile": profile})
+    return render(request, "profile.html", {"dataset1": dataset1})
 
-class ProfileList(APIView):
+
+
+
+class Dataset1List(APIView):
 
     def get(self, request, format=None):
-        profiles = Profile.objects.all()
-        serializer = ProfileSerializer(profiles, many=True)
+        dataset1 = Dataset1.objects.all()
+        serializer = Dataset1Serializer(dataset1, many=True)
+        return Response(serializer.data)
+
+
+class Dataset2List(APIView):
+
+    def get(self, request, format=None):
+        dataset2 = Dataset2.objects.all()
+        serializer = Dataset2Serializer(dataset2, many=True)
+        return Response(serializer.data)
+        
+
+class Dataset3List(APIView):
+
+    def get(self, request, format=None):
+        dataset3 = Dataset3.objects.all()
+        serializer = Dataset3Serializer(dataset3, many=True)
         return Response(serializer.data)
