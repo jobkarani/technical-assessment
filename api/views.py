@@ -6,8 +6,6 @@ from .forms import *
 from .serializer import *
 from rest_framework.views import APIView
 from rest_framework.response import Response 
-from rest_framework import generics
-
 
 # Create your views here.
 def index(request):
@@ -78,33 +76,26 @@ def dataset3(request):
 
 
 
+class Dataset1List(APIView):
+
+    def get(self, request, format=None):
+        dataset1 = Dataset1.objects.all()
+        serializer = Dataset1Serializer(dataset1, many=True)
+        return Response(serializer.data)
 
 
-class Dataset1CreateAPIView(generics.CreateAPIView):
-   
-    queryset = Dataset1.objects.all()
-    serializer_class = Dataset1CreateSerializer
+class Dataset2List(APIView):
 
-# class Dataset1List(APIView):
-
-#     def get(self, request, format=None):
-#         dataset1 = Dataset1.objects.all()
-#         serializer = Dataset1Serializer(dataset1, many=True)
-#         return Response(serializer.data)
+    def get(self, request, format=None):
+        dataset2 = Dataset2.objects.all()
+        serializer = Dataset2Serializer(dataset2, many=True)
+        return Response(serializer.data)
 
 
-# class Dataset2List(APIView):
+class Dataset3List(APIView):
 
-#     def get(self, request, format=None):
-#         dataset2 = Dataset2.objects.all()
-#         serializer = Dataset2Serializer(dataset2, many=True)
-#         return Response(serializer.data)
-
-
-# class Dataset3List(APIView):
-
-#     def get(self, request, format=None):
-#         dataset3 = Dataset3.objects.all()
-#         serializer = Dataset3Serializer(dataset3, many=True)
-#         return Response(serializer.data)
+    def get(self, request, format=None):
+        dataset3 = Dataset3.objects.all()
+        serializer = Dataset3Serializer(dataset3, many=True)
+        return Response(serializer.data)
 
