@@ -1,5 +1,5 @@
 from http.client import PROCESSING
-from urllib import response
+from urllib import request, response
 from django.http import HttpResponse, HttpResponseRedirect
 from rest_framework.response import Response
 from django.shortcuts import redirect, render
@@ -104,6 +104,18 @@ class Dataset3List(APIView):
         return Response(serializer.data)
 
 
+def compare_name():
+    name = Dataset1.name
+    name1 = Dataset2.objects.all()
+    name2 = Dataset1.objects.all()
+    if name1 != name2:
+        name1=name2
+    return name
+    
+print(compare_name())
+
+
+    
 
 def grade(grade):
     if grade == 'AA':
