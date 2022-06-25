@@ -99,13 +99,3 @@ class Dataset3List(APIView):
         serializer = Dataset3Serializer(dataset3, many=True)
         return Response(serializer.data)
 
-class DatasetList(APIView):
-
-    def get(self, request, format=None):
-        dataset1 = Dataset1.objects.all()
-        dataset2 = Dataset2.objects.all()
-        dataset3 = Dataset3.objects.all()
-        serializer = Dataset1Serializer(dataset1, many=True)
-        serializer2 = Dataset2Serializer(dataset2,  many=True)
-        serializer3 = Dataset3Serializer(dataset3, many=True)
-        return Response(serializer.data,serializer2.data,serializer3.data)

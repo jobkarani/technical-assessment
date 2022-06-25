@@ -14,6 +14,5 @@ urlpatterns = [
     path('create_dataset3/', views.create_dataset3, name='create_dataset3'),
     path('dataset3/', views.dataset3, name='dataset3'),
     path('api/dataset3/', views.Dataset3List.as_view()),
-
-    path('api/datasets/', views.DatasetList.as_view()),
+    
 ]
