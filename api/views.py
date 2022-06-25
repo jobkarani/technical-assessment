@@ -5,6 +5,7 @@ from .models import *
 from .forms import *
 from .serializer import *
 from rest_framework.views import APIView
+from rest_framework.response import Response 
 
 # Create your views here.
 def index(request):
@@ -95,5 +96,16 @@ class Dataset3List(APIView):
 
     def get(self, request, format=None):
         dataset3 = Dataset3.objects.all()
+        serializer = Dataset3Serializer(dataset3, many=True)
+        return Response(serializer.data)
+
+class DatasetList(APIView):
+
+    def get(self, request, format=None):
+        dataset1 = Dataset1.objects.all()
+        dataset2 = Dataset2.objects.all()
+        dataset3 = Dataset3.objects.all()
+        serializer = Dataset1Serializer(dataset1, many=True)
+        serializer = Dataset2Serializer(dataset2,  many=True)
         serializer = Dataset3Serializer(dataset3, many=True)
         return Response(serializer.data)
