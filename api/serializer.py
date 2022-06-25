@@ -3,18 +3,18 @@ from rest_framework import serializers
 from .models import *
 
 
-class Dataset1Serializer(serializers.ModelSerializer):
-    class Dataset2Serializer(serializers.ModelSerializer):
+class Dataset1CreateSerializer(serializers.ModelSerializer):
+    class Dataset2TempSerializer(serializers.ModelSerializer):
         class Meta:
             model = Dataset2
             fields = ('dob', 'idNumber','name','phone')
-    dataset2 = Dataset2Serializer()
+    dataset2 = Dataset2TempSerializer()
 
-    class Dataset3Serializer(serializers.ModelSerializer):
+    class Dataset3TempSerializer(serializers.ModelSerializer):
         class Meta:
             model = Dataset3
             fields = ('grade','probability')
-    dataset3 = Dataset3Serializer()
+    dataset3 = Dataset3TempSerializer()
 
     class Meta:
         model = Dataset1
