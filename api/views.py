@@ -1,4 +1,6 @@
-from django.http import HttpResponseRedirect
+from http.client import PROCESSING
+from urllib import response
+from django.http import HttpResponse, HttpResponseRedirect
 from rest_framework.response import Response
 from django.shortcuts import redirect, render
 from .models import *
@@ -29,8 +31,10 @@ def create_dataset1(request):
 
 def dataset1(request):
     dataset1 = Dataset1.objects.all()
+    dataset2= Dataset2.objects.all()
+    dataset3= Dataset3.objects.all()
 
-    return render(request, "dataset1.html", {"dataset1": dataset1})
+    return render(request, "dataset1.html", {"dataset1": dataset1,"dataset2": dataset2,"dataset3": dataset3})
 
 
 def create_dataset2(request):
@@ -99,3 +103,24 @@ class Dataset3List(APIView):
         serializer = Dataset3Serializer(dataset3, many=True)
         return Response(serializer.data)
 
+
+
+def grade(grade):
+    if grade == 'AA':
+        grade = 1
+    elif grade=='BB':
+        grade =0.9
+    elif grade == 'CC':
+        grade = 0.8
+    elif grade == 'DD':
+        grade = 0.7
+    elif grade == 'EE':
+        grade = 0.6
+    elif grade == 'GG':
+        grade = 0.5
+    elif grade == 'FF':
+        grade = 0.4
+    
+    return grade 
+
+print(grade('FF'))
