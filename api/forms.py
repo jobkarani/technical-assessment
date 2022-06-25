@@ -11,10 +11,10 @@ class Dataset1Form(ModelForm):
 
 class Dataset2Form(ModelForm):
     class Meta:
-        model = Dataset1
+        model = Dataset2
         fields = ['dob', 'idNumber','name','phone']
 
 class Dataset3Form(ModelForm):
     class Meta:
-        model = Dataset1
+        model = Dataset3
         fields = ['grade', 'probability']

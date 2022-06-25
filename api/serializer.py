@@ -3,7 +3,17 @@ from rest_framework import serializers
 from .models import *
 
 
-class ProfileSerializer(serializers.ModelSerializer):
+class Dataset1Serializer(serializers.ModelSerializer):
     class Meta:
-        model = Profile
-        fields = ('dob', 'email', 'idNumber','name','phone','grade','probability')
+        model = Dataset1
+        fields = ('dob', 'email', 'idNumber','name','phone')
+
+class Dataset2Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dataset2
+        fields = ('dob', 'idNumber','name','phone')
+
+class Dataset3Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dataset3
+        fields = ('grade','probability')
