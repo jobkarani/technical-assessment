@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block content %}
+{{block.super}}
+
+<section class="blog-section">
+    <div class="container mt-5">
+        
+        <div class="sin">
+            <button class="text-center"><a href="{% url 'create_profile' %}" style="list-style: none;font-size: x-large;font-weight: 900;">Create Profile</a></button>
+        </div>
+        <br>
+        <div class="sin">
+            <button class="text-center"><a href="/profile/" style="color: #834641; list-style: none;font-size: x-large;font-weight: 900;"> View Profiles</a></button>
+        </div>
+       
+    </div>
+</section>
+{% endblock %}

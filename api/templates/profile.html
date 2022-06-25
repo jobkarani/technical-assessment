@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .container {
+        margin-left: 35%;
+    }
+
+    section {
+        overflow: hidden;
+        width: 100%;
+    }
+</style>
+<section>
+    <div class=" container">
+        <div class=" mt-5">
+            <div class="row">
+                <div class="col-md-4">
+                    {% for profile in profile %}
+                        <div class="card mb-3"
+                            style="background: linear-gradient(to top left, #e89beb, #99f048);filter: drop-shadow(2px 4px 8px #585858);">
+                            <div class="card-body text-center">
+                                <p><span style="font: weight 900px; font-size:larger;">Date of birth: </span>{{profile.dob}}</p>
+
+                                <p>
+                                <span style="font: weight 900px; font-size:larger;"> Email: </span>{{ profile.email }}
+                                </p>
+
+                                <p>
+                                 <span style="font: weight 900px; font-size:larger;"> Id Number:
+                                    </span>{{profile.idNumber}}
+                                </p>
+
+                                <p>
+                                 <span style="font: weight 900px; font-size:larger;">Name:
+                                    </span>{{profile.name}}
+                                </p>
+
+                                <p>
+                                    <span style="font: weight 900px; font-size:larger;"> Phone Number:
+                                    </span>{{profile.phone}}
+                                </p>
+
+                                <p>
+                                <span style="font: weight 900px; font-size:larger;"> Grade: </span>{{ profile.grade }}
+                                </p>
+
+                                <p>
+                                <span style="font: weight 900px; font-size:larger;"> Probability: </span>{{ profile.probability }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from rest_framework.response import Response
 from django.shortcuts import redirect, render
 from .models import *
@@ -17,11 +18,11 @@ def create_profile(request):
         if form.is_valid():
             profile = form.save(commit=False)
             profile.save()
-        # return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/')
 
     else:
         form = ProfileForm()
-    return render(request, 'create_profile.html', {"form": form, "title": title})
+    return render(request, 'createProfile.html', {"form": form, "title": title})
 
 
 
@@ -29,19 +30,6 @@ def profile(request):
     profile = Profile.objects.all()
 
     return render(request, "profile.html", {"profile": profile})
-
-def update_profile(request, id):
-    profile = Profile.objects.all()
-    form = UpdateProfileForm(instance=profile)
-    if request.method == "POST":
-        form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.save()
-            return redirect('profile')
-
-    ctx = {"form": form}
-    return render(request, 'update_prof.html', ctx)
 
 class ProfileList(APIView):
 
