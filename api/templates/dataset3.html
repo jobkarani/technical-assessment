@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .container {
+        margin-left: 35%;
+    }
+
+    section {
+        overflow: hidden;
+        width: 100%;
+    }
+</style>
+<section>
+    <div class=" container">
+        <div class=" mt-5">
+            <div class="row">
+                <div class="col-md-4">
+                    {% for dataset3 in dataset3 %}
+                        <div class="card mb-3"
+                            style="background: linear-gradient(to top left, #e89beb, #99f048);filter: drop-shadow(2px 4px 8px #585858);">
+                            <div class="card-body text-center">
+
+                                <p>
+                                <span style="font: weight 900px; font-size:larger;"> Grade: </span>{{ dataset3.grade }}
+                                </p>
+
+                                <p>
+                                <span style="font: weight 900px; font-size:larger;"> Probability: </span>{{ dataset3.probability }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -22,14 +22,55 @@ def create_dataset1(request):
 
     else:
         form = Dataset1Form()
-    return render(request, 'createProfile.html', {"form": form, "title": title})
+    return render(request, 'createDataset1.html', {"form": form, "title": title})
 
 
 
 def dataset1(request):
     dataset1 = Dataset1.objects.all()
 
-    return render(request, "profile.html", {"dataset1": dataset1})
+    return render(request, "dataset1.html", {"dataset1": dataset1})
+
+
+def create_dataset2(request):
+    title = "Create Dataset2"
+    if request.method == 'POST':
+        form = Dataset2Form(request.POST, request.FILES)
+        if form.is_valid():
+            dataset2 = form.save(commit=False)
+            dataset2.save()
+        return HttpResponseRedirect('/')
+
+    else:
+        form = Dataset2Form()
+    return render(request, 'createDataset2.html', {"form": form, "title": title})
+
+
+
+def dataset2(request):
+    dataset2 = Dataset2.objects.all()
+
+    return render(request, "dataset2.html", {"dataset2": dataset2})
+
+def create_dataset3(request):
+    title = "Create Dataset3"
+    if request.method == 'POST':
+        form = Dataset3Form(request.POST, request.FILES)
+        if form.is_valid():
+            dataset3 = form.save(commit=False)
+            dataset3.save()
+        return HttpResponseRedirect('/')
+
+    else:
+        form = Dataset3Form()
+    return render(request, 'createDataset3.html', {"form": form, "title": title})
+
+
+
+def dataset3(request):
+    dataset3 = Dataset3.objects.all()
+
+    return render(request, "dataset3.html", {"dataset3": dataset3})
 
 
 
@@ -48,7 +89,7 @@ class Dataset2List(APIView):
         dataset2 = Dataset2.objects.all()
         serializer = Dataset2Serializer(dataset2, many=True)
         return Response(serializer.data)
-        
+
 
 class Dataset3List(APIView):
 

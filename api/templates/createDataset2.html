@@ -26,11 +26,11 @@
             <div class="col-md-12" >
                 <div class="input">
                     <div class="text-center">
-                        <div class="title">Create a profile</div>
+                        <div class="title">Create Dataset2</div>
                         <hr />
                     </div>
 
-                    <form action="{%url 'create_profile'%}" method="post" enctype="multipart/form-data">
+                    <form action="{%url 'create_dataset2'%}" method="post" enctype="multipart/form-data">
                         {%csrf_token%} {% bootstrap_form form%}
                         <input type="submit" class="btn btn-dark" value="Create Profile" />
                     </form>

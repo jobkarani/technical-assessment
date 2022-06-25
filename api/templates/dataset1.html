@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .container {
+        margin-left: 35%;
+    }
+
+    section {
+        overflow: hidden;
+        width: 100%;
+    }
+</style>
+<section>
+    <div class=" container">
+        <div class=" mt-5">
+            <div class="row">
+                <div class="col-md-4">
+                    {% for dataset1 in dataset1 %}
+                        <div class="card mb-3"
+                            style="background: linear-gradient(to top left, #e89beb, #99f048);filter: drop-shadow(2px 4px 8px #585858);">
+                            <div class="card-body text-center">
+                                <p><span style="font: weight 900px; font-size:larger;">Date of birth: </span>{{dataset1.dob}}</p>
+
+                                <p>
+                                <span style="font: weight 900px; font-size:larger;"> Email: </span>{{ dataset1.email }}
+                                </p>
+
+                                <p>
+                                 <span style="font: weight 900px; font-size:larger;"> Id Number:
+                                    </span>{{dataset1.idNumber}}
+                                </p>
+
+                                <p>
+                                 <span style="font: weight 900px; font-size:larger;">Name:
+                                    </span>{{dataset1.name}}
+                                </p>
+
+                                <p>
+                                    <span style="font: weight 900px; font-size:larger;"> Phone Number:
+                                    </span>{{dataset1.phone}}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

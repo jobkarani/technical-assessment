@@ -15,37 +15,25 @@
         <div class=" mt-5">
             <div class="row">
                 <div class="col-md-4">
-                    {% for profile in profile %}
+                    {% for dataset2 in dataset2 %}
                         <div class="card mb-3"
                             style="background: linear-gradient(to top left, #e89beb, #99f048);filter: drop-shadow(2px 4px 8px #585858);">
                             <div class="card-body text-center">
-                                <p><span style="font: weight 900px; font-size:larger;">Date of birth: </span>{{profile.dob}}</p>
-
-                                <p>
-                                <span style="font: weight 900px; font-size:larger;"> Email: </span>{{ profile.email }}
-                                </p>
+                                <p><span style="font: weight 900px; font-size:larger;">Date of birth: </span>{{dataset2.dob}}</p>
 
                                 <p>
                                  <span style="font: weight 900px; font-size:larger;"> Id Number:
-                                    </span>{{profile.idNumber}}
+                                    </span>{{dataset2.idNumber}}
                                 </p>
 
                                 <p>
                                  <span style="font: weight 900px; font-size:larger;">Name:
-                                    </span>{{profile.name}}
+                                    </span>{{dataset2.name}}
                                 </p>
 
                                 <p>
                                     <span style="font: weight 900px; font-size:larger;"> Phone Number:
-                                    </span>{{profile.phone}}
-                                </p>
-
-                                <p>
-                                <span style="font: weight 900px; font-size:larger;"> Grade: </span>{{ profile.grade }}
-                                </p>
-
-                                <p>
-                                <span style="font: weight 900px; font-size:larger;"> Probability: </span>{{ profile.probability }}
+                                    </span>{{dataset2.phone}}
                                 </p>
                             </div>
                         </div>
