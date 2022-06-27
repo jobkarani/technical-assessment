@@ -1,4 +1,3 @@
-from http.client import PROCESSING
 from urllib import request, response
 from django.http import HttpResponse, HttpResponseRedirect
 from rest_framework.response import Response
@@ -10,112 +9,97 @@ from rest_framework.views import APIView
 from rest_framework.response import Response 
 
 # Create your views here.
+# Create your views here.
 def index(request):
 
     return render(request, "index.html")
 
-def create_dataset1(request):
-    title = "Create Dataset1"
+def create_profile(request):
+    title = "Create Profile"
     if request.method == 'POST':
-        form = Dataset1Form(request.POST, request.FILES)
+        form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            dataset1 = form.save(commit=False)
-            dataset1.save()
-        return HttpResponseRedirect('/')
+            profile = form.save(commit=False)
+            profile.save()
+        # return HttpResponseRedirect('/')
 
     else:
-        form = Dataset1Form()
-    return render(request, 'createDataset1.html', {"form": form, "title": title})
+        form = ProfileForm()
+    return render(request, 'create_profile.html', {"form": form, "title": title})
 
 
 
-def dataset1(request):
-    dataset1 = Dataset1.objects.all()
-    dataset2= Dataset2.objects.all()
-    dataset3= Dataset3.objects.all()
+def profile(request):
+    profile = Profile.objects.all()
 
-    return render(request, "dataset1.html", {"dataset1": dataset1,"dataset2": dataset2,"dataset3": dataset3})
+    return render(request, "profile.html", {"profile": profile})
 
-
-def create_dataset2(request):
-    title = "Create Dataset2"
-    if request.method == 'POST':
-        form = Dataset2Form(request.POST, request.FILES)
+def update_profile(request, id):
+    profile = Profile.objects.all()
+    form = UpdateProfileForm(instance=profile)
+    if request.method == "POST":
+        form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            dataset2 = form.save(commit=False)
-            dataset2.save()
-        return HttpResponseRedirect('/')
+            profile = form.save(commit=False)
+            profile.save()
+            return redirect('profile')
 
-    else:
-        form = Dataset2Form()
-    return render(request, 'createDataset2.html', {"form": form, "title": title})
+    ctx = {"form": form}
+    return render(request, 'update_prof.html', ctx)
 
-
-
-def dataset2(request):
-    dataset2 = Dataset2.objects.all()
-
-    return render(request, "dataset2.html", {"dataset2": dataset2})
-
-def create_dataset3(request):
-    title = "Create Dataset3"
-    if request.method == 'POST':
-        form = Dataset3Form(request.POST, request.FILES)
-        if form.is_valid():
-            dataset3 = form.save(commit=False)
-            dataset3.save()
-        return HttpResponseRedirect('/')
-
-    else:
-        form = Dataset3Form()
-    return render(request, 'createDataset3.html', {"form": form, "title": title})
-
-
-
-def dataset3(request):
-    dataset3 = Dataset3.objects.all()
-
-    return render(request, "dataset3.html", {"dataset3": dataset3})
-
-
-
-
-class Dataset1List(APIView):
+class ProfileList(APIView):
 
     def get(self, request, format=None):
-        dataset1 = Dataset1.objects.all()
-        serializer = Dataset1Serializer(dataset1, many=True)
+        profiles = Profile.objects.all()
+        serializer = ProfileSerializer(profiles, many=True)
         return Response(serializer.data)
 
 
-class Dataset2List(APIView):
 
-    def get(self, request, format=None):
-        dataset2 = Dataset2.objects.all()
-        serializer = Dataset2Serializer(dataset2, many=True)
-        return Response(serializer.data)
-
-
-class Dataset3List(APIView):
-
-    def get(self, request, format=None):
-        dataset3 = Dataset3.objects.all()
-        serializer = Dataset3Serializer(dataset3, many=True)
-        return Response(serializer.data)
-
-
-def compare_name():
-    name = Dataset1.name
-    name1 = Dataset2.objects.all()
-    name2 = Dataset1.objects.all()
-    if name1 != name2:
-        name1=name2
-    return name
+# def compare_name(request,name):
     
-print(compare_name())
+#     name2 = Dataset2.objects.get(name=name)
+#     name1 = Dataset1.objects.get(name=name)
+#     if name2 != name1:
+#         name = 0
+#     else:
+#         name = name2
 
+#     return render(request, 'index.html')
 
+# def compare_phone(request,phone):
     
+#     phone1 = Dataset1.objects.get(phone=phone)
+#     phone2 = Dataset2.objects.get(phone=phone)
+#     if phone1 != phone2:
+#         phone = 0
+#     else:
+#         phone = phone1
+
+#     return render(request, 'index.html')
+
+# def compare_dob(request,dob):
+    
+#     dob1 = Dataset1.objects.get(dob=dob)
+#     dob2 = Dataset2.objects.get(dob=dob)
+#     if dob1 != dob2:
+#         dob = 0
+#     else:
+#         dob = dob1
+
+#     return render(request, 'index.html')
+
+# def compare_email():
+#     email1 = Dataset1.objects.filter(email=request.email)
+#     email2 = Dataset2.objects.filter(email=request.email)
+#     if email1 != email2:
+#         email = -10
+#     else:
+#         email = email1
+
+#     return email1
+
+# print(compare_email())
 
 def grade(grade):
     if grade == 'AA':

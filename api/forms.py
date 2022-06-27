@@ -4,17 +4,14 @@ from django.forms import ModelForm
 from .models import *
 
 
-class Dataset1Form(ModelForm):
+class ProfileForm(ModelForm):
     class Meta:
-        model = Dataset1
-        fields = ['dob', 'email', 'idNumber','name','phone']
+        model = Profile
+        fields = ['dob', 'email', 'idNumber','name','phone','grade','probability']
 
-class Dataset2Form(ModelForm):
-    class Meta:
-        model = Dataset2
-        fields = ['dob', 'idNumber','name','phone']
 
-class Dataset3Form(ModelForm):
+class UpdateProfileForm(forms.ModelForm):
     class Meta:
-        model = Dataset3
-        fields = ['grade', 'probability']
+        model = Profile
+        fields = ['dob', 'email', 'idNumber','name','phone','grade','probability']
+
