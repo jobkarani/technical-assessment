@@ -1,19 +1,17 @@
-from urllib import request, response
-from django.http import HttpResponse, HttpResponseRedirect
-from rest_framework.response import Response
 from django.shortcuts import redirect, render
 from .models import *
 from .forms import *
+from rest_framework import status
+from django.http import Http404
 from .serializer import *
 from rest_framework.views import APIView
 from rest_framework.response import Response 
+from rest_framework.decorators import api_view
+from rest_framework.reverse import reverse
+from rest_framework import renderers
+from rest_framework import generics
 
 # Create your views here.
-# Create your views here.
-def index(request):
-
-    return render(request, "index.html")
-
 def create_profile(request):
     title = "Create Profile"
     if request.method == 'POST':
@@ -47,13 +45,34 @@ def update_profile(request, id):
     ctx = {"form": form}
     return render(request, 'update_prof.html', ctx)
 
-class ProfileList(APIView):
 
+class ProfileList(APIView):
     def get(self, request, format=None):
         profiles = Profile.objects.all()
         serializer = ProfileSerializer(profiles, many=True)
         return Response(serializer.data)
 
+    def post(self, request, format=None):
+        serializer = ProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'profiles': reverse('ProfileList', request=request, format=format)
+    })
+
+class ProfileHighlight(generics.GenericAPIView):
+    queryset = Profile.objects.all()
+    renderer_classes = [renderers.StaticHTMLRenderer]
+
+    def get(self, request, *args, **kwargs):
+        profile = self.get_object()
+        return Response(profile.highlighted)
 
 
 # def compare_name(request,name):
