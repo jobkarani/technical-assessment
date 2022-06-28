@@ -50,8 +50,10 @@ INSTALLED_APPS = [
     'cloudinary',
     'tinymce',
     'crispy_forms',
-    'django_filters',
+    
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

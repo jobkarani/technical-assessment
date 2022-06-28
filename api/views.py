@@ -10,6 +10,10 @@ from rest_framework.decorators import api_view
 from rest_framework.reverse import reverse
 from rest_framework import renderers
 from rest_framework import generics
+# from rest_framework import serializers
+# from rest_framework.renderers import JSONRenderer
+# from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 def create_profile(request):
@@ -45,35 +49,32 @@ def update_profile(request, id):
     ctx = {"form": form}
     return render(request, 'update_prof.html', ctx)
 
-
 class ProfileList(APIView):
+
     def get(self, request, format=None):
         profiles = Profile.objects.all()
         serializer = ProfileSerializer(profiles, many=True)
         return Response(serializer.data)
 
-    def post(self, request, format=None):
-        serializer = ProfileSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+def grade(grade):
+    if grade == 'AA':
+        grade = 1
+    elif grade=='BB':
+        grade =0.9
+    elif grade == 'CC':
+        grade = 0.8
+    elif grade == 'DD':
+        grade = 0.7
+    elif grade == 'EE':
+        grade = 0.6
+    elif grade == 'GG':
+        grade = 0.5
+    elif grade == 'FF':
+        grade = 0.4
+    
+    return grade 
 
-
-@api_view(['GET'])
-def api_root(request, format=None):
-    return Response({
-        'profiles': reverse('ProfileList', request=request, format=format)
-    })
-
-class ProfileHighlight(generics.GenericAPIView):
-    queryset = Profile.objects.all()
-    renderer_classes = [renderers.StaticHTMLRenderer]
-
-    def get(self, request, *args, **kwargs):
-        profile = self.get_object()
-        return Response(profile.highlighted)
-
+print(grade('BB'))
 
 # def compare_name(request,name):
     
@@ -120,22 +121,5 @@ class ProfileHighlight(generics.GenericAPIView):
 
 # print(compare_email())
 
-def grade(grade):
-    if grade == 'AA':
-        grade = 1
-    elif grade=='BB':
-        grade =0.9
-    elif grade == 'CC':
-        grade = 0.8
-    elif grade == 'DD':
-        grade = 0.7
-    elif grade == 'EE':
-        grade = 0.6
-    elif grade == 'GG':
-        grade = 0.5
-    elif grade == 'FF':
-        grade = 0.4
-    
-    return grade 
 
-print(grade('FF'))
+
